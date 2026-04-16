@@ -1,13 +1,15 @@
 package com.inditex.gym_lorza.controller;
 
+import com.inditex.gym_lorza.exception.ObjectNotFoundException;
 import com.inditex.gym_lorza.model.Trainer;
 import com.inditex.gym_lorza.service.TrainerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+import jakarta.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/trainers")
@@ -21,8 +23,8 @@ public class TrainerController {
     }
 
     @PostMapping
-    public ResponseEntity<Trainer> createTrainer(@Valid @RequestBody Trainer trainer){
-        Trainer savedTrainer = trainerService.addTrainer(trainer);
+    public ResponseEntity<Trainer> createTrainer(@Valid @RequestBody Trainer newTrainer){
+        Trainer savedTrainer = trainerService.addTrainer(newTrainer);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedTrainer);
     }
 
@@ -33,9 +35,11 @@ public class TrainerController {
 
     @GetMapping("/id")
     public ResponseEntity<Trainer> getTrainerById(@PathVariable Long id){
-        return  trainerService.findTrainer(id)
-                .map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        Optional<Trainer> foundTrainer = trainerService.findTrainer(id);
+        if(foundTrainer.isPresent()) {
+            return new ResponseEntity<>(foundTrainer.get(), HttpStatus.FOUND);
+        }
+        throw new ObjectNotFoundException("trainer", id);
     }
 
     @PutMapping("/id")
