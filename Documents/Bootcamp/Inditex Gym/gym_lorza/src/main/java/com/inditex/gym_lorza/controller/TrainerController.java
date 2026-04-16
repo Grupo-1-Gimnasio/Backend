@@ -33,7 +33,7 @@ public class TrainerController {
         return  trainerService.getAll();
     }
 
-    @GetMapping("/id")
+    @GetMapping("/{id}")
     public ResponseEntity<Trainer> getTrainerById(@PathVariable Long id){
         Optional<Trainer> foundTrainer = trainerService.findTrainer(id);
         if(foundTrainer.isPresent()) {
@@ -42,13 +42,13 @@ public class TrainerController {
         throw new ObjectNotFoundException("trainer", id);
     }
 
-    @PutMapping("/id")
+    @PutMapping("/{id}")
     public ResponseEntity<Trainer> updatedTrainerById(@PathVariable Long id, @Valid @RequestBody Trainer trainer) {
         Trainer updatedTrainer = trainerService.updateTrainer(id, trainer);
         return ResponseEntity.ok(updatedTrainer); //No usamos un try porque vamos autilizar @ControllerAdvincer para las excepciones.
     }
 
-    @DeleteMapping("/id")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTrainer(@PathVariable Long id) {
         if (trainerService.findTrainer(id).isEmpty()) {
             return ResponseEntity.notFound().build();
