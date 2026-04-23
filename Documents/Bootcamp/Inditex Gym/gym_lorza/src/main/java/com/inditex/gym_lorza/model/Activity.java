@@ -21,9 +21,11 @@ public class Activity {
     @NotBlank
     private String title;
     @NotBlank
+    private String description;
+    @NotBlank
     private String price;
-    @NotNull
-    private Integer weekDay;
+    @NotBlank
+    private String weekDay;
     @NotNull
     private LocalTime startHour;
     @NotNull

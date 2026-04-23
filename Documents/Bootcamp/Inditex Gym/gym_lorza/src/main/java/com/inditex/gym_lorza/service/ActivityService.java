@@ -55,6 +55,7 @@ public class ActivityService {
                 .orElseThrow(() -> new ObjectNotFoundException("actividad", id));
 
         existingActivity.setTitle(dto.getTitle());
+        existingActivity.setDescription(dto.getDescription());
         existingActivity.setPrice(dto.getPrice());
         existingActivity.setWeekDay(dto.getWeekDay());
         existingActivity.setStartHour(dto.getStartHour());

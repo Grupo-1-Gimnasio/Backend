@@ -47,6 +47,8 @@ public class TrainerService {
 
         existingTrainer.setName(dto.getName());
         existingTrainer.setDni(dto.getDni());
+        existingTrainer.setSpeciality(dto.getSpeciality());
+        existingTrainer.setExperience(dto.getExperience());
         existingTrainer.setHiringYear(dto.getHiringYear());
         existingTrainer.setIsHired(dto.getIsHired());
         existingTrainer.setImage(dto.getImage());

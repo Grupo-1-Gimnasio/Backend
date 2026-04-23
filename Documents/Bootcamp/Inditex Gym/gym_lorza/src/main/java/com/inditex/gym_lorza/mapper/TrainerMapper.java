@@ -10,6 +10,8 @@ public class TrainerMapper {
         Trainer trainer = new Trainer();
         trainer.setName(dto.getName());
         trainer.setDni(dto.getDni());
+        trainer.setSpeciality(dto.getSpeciality());
+        trainer.setExperience(dto.getExperience());
         trainer.setHiringYear(dto.getHiringYear());
         trainer.setIsHired(dto.getIsHired());
         trainer.setImage(dto.getImage());
@@ -21,6 +23,8 @@ public class TrainerMapper {
         dto.setId(trainer.getId());
         dto.setName(trainer.getName());
         dto.setDni(trainer.getDni());
+        dto.setSpeciality(trainer.getSpeciality());
+        dto.setExperience(trainer.getExperience());
         dto.setHiringYear(trainer.getHiringYear());
         dto.setIsHired(trainer.getIsHired());
         dto.setImage(trainer.getImage());

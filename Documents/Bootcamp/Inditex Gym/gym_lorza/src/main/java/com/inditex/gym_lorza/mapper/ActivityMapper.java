@@ -9,6 +9,7 @@ public class ActivityMapper {
     public static Activity toEntity(ActivityRequestDTO dto) {
         Activity activity = new Activity();
         activity.setTitle(dto.getTitle());
+        activity.setDescription(dto.getDescription());
         activity.setPrice(dto.getPrice());
         activity.setWeekDay(dto.getWeekDay());
         activity.setStartHour(dto.getStartHour());
@@ -21,6 +22,7 @@ public class ActivityMapper {
         ActivityResponseDTO dto = new ActivityResponseDTO();
         dto.setId(activity.getId());
         dto.setTitle(activity.getTitle());
+        dto.setDescription(activity.getDescription());
         dto.setPrice(activity.getPrice());
         dto.setWeekDay(activity.getWeekDay());
         dto.setStartHour(activity.getStartHour());

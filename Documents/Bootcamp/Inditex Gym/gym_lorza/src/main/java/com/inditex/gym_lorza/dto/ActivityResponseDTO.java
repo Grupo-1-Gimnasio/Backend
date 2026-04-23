@@ -10,8 +10,9 @@ public class ActivityResponseDTO {
 
     private Long id;
     private String title;
+    private String description;
     private String price;
-    private Integer weekDay;
+    private String weekDay;
     private LocalTime startHour;
     private LocalTime endHour;
     private String image;

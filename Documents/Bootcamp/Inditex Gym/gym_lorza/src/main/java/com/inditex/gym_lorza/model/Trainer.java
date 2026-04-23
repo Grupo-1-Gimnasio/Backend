@@ -23,6 +23,10 @@ public class Trainer {
     private String name;
     @NotBlank
     private  String dni;
+    @NotBlank
+    private String speciality;
+    @NotBlank
+    private String experience;
     @NotNull
     private  Integer hiringYear;
     @NotNull
