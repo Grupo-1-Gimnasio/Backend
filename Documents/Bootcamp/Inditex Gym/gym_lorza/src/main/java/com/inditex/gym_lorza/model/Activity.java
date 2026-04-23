@@ -23,7 +23,7 @@ public class Activity {
     @NotBlank
     private String price;
     @NotNull
-    private Integer weekDay;
+    private String weekDay;
     @NotNull
     private LocalTime startHour;
     @NotNull
@@ -32,7 +32,7 @@ public class Activity {
     private String image;
 
     @ManyToOne
-    @JoinColumn(name = "trainers_id")
+    @JoinColumn(name = "trainer_id")
     @JsonIgnoreProperties("activities")
     private Trainer trainer;
 }

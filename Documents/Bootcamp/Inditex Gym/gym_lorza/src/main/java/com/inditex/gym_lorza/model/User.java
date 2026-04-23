@@ -23,9 +23,14 @@ public class User {
     @NotBlank
     private String dni;
     @NotNull
+    @Column(name = "start_year")
     private Integer startYear;
     @NotNull
+    @Column(name = "is_active")
     private Boolean isActive;
+    @NotNull
+    @Column(name = "annual_fee_paid")
+    private Boolean annualFeePaid;
 
     private String image;
 }

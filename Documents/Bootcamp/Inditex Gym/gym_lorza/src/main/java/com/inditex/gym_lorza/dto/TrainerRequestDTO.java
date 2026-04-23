@@ -13,6 +13,8 @@ public class TrainerRequestDTO {
     private String name;
     @NotBlank
     private String dni;
+    private String speciality;
+    private String experience;
     @NotNull
     private Integer hiringYear;
     @NotNull

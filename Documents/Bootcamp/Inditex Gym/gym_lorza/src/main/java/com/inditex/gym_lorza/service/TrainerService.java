@@ -38,6 +38,9 @@ public class TrainerService {
     }
 
     public void deleteTrainer(Long id) {
+        if (!trainerRepository.existsById(id)) {
+            throw new ObjectNotFoundException("entrenadora", id);
+        }
         trainerRepository.deleteById(id);
     }
 
@@ -47,6 +50,8 @@ public class TrainerService {
 
         existingTrainer.setName(dto.getName());
         existingTrainer.setDni(dto.getDni());
+        existingTrainer.setSpeciality(dto.getSpeciality());
+        existingTrainer.setExperience(dto.getExperience());
         existingTrainer.setHiringYear(dto.getHiringYear());
         existingTrainer.setIsHired(dto.getIsHired());
         existingTrainer.setImage(dto.getImage());

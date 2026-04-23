@@ -1,5 +1,7 @@
 package com.inditex.gym_lorza.dto;
 
+import com.fasterxml.jackson.annotation.JsonAlias;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
@@ -15,11 +17,14 @@ public class ActivityRequestDTO {
     @NotBlank
     private String price;
     @NotNull
-    private Integer weekDay;
+    private String weekDay;
     @NotNull
     private LocalTime startHour;
     @NotNull
     private LocalTime endHour;
     private String image;
+
+    @JsonProperty("trainer_id")
+    @JsonAlias("trainerId")
     private Long trainerId;
 }

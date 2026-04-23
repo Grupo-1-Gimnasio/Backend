@@ -27,7 +27,7 @@ public class ActivityMapper {
         dto.setEndHour(activity.getEndHour());
         dto.setImage(activity.getImage());
         if (activity.getTrainer() != null) {
-            dto.setTrainerName(activity.getTrainer().getName());
+            dto.setTrainerId(activity.getTrainer().getId());
         }
         return dto;
     }

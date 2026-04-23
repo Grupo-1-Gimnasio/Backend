@@ -38,6 +38,9 @@ public class UserService {
     }
 
     public void deleteUser(Long id) {
+        if (!userRepository.existsById(id)) {
+            throw new ObjectNotFoundException("usuaria", id);
+        }
         userRepository.deleteById(id);
     }
 
@@ -50,6 +53,7 @@ public class UserService {
         existingUser.setDni(dto.getDni());
         existingUser.setStartYear(dto.getStartYear());
         existingUser.setIsActive(dto.getIsActive());
+        existingUser.setAnnualFeePaid(dto.getAnnualFeePaid());
         existingUser.setImage(dto.getImage());
 
         return UserMapper.toDTO(userRepository.save(existingUser));

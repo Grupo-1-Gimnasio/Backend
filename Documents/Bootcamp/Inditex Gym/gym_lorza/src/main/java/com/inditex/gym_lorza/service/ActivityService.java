@@ -38,15 +38,14 @@ public class ActivityService {
 
     public ActivityResponseDTO addActivity(ActivityRequestDTO dto) {
         Activity activity = ActivityMapper.toEntity(dto);
-        if (dto.getTrainerId() != null) {
-            Trainer trainer = trainerRepository.findById(dto.getTrainerId())
-                    .orElseThrow(() -> new ObjectNotFoundException("entrenadora", dto.getTrainerId()));
-            activity.setTrainer(trainer);
-        }
+        activity.setTrainer(resolveTrainer(dto.getTrainerId()));
         return ActivityMapper.toDTO(activityRepository.save(activity));
     }
 
     public void deleteActivity(Long id) {
+        if (!activityRepository.existsById(id)) {
+            throw new ObjectNotFoundException("actividad", id);
+        }
         activityRepository.deleteById(id);
     }
 
@@ -60,13 +59,17 @@ public class ActivityService {
         existingActivity.setStartHour(dto.getStartHour());
         existingActivity.setEndHour(dto.getEndHour());
         existingActivity.setImage(dto.getImage());
-
-        if (dto.getTrainerId() != null) {
-            Trainer trainer = trainerRepository.findById(dto.getTrainerId())
-                    .orElseThrow(() -> new ObjectNotFoundException("entrenadora", dto.getTrainerId()));
-            existingActivity.setTrainer(trainer);
-        }
+        existingActivity.setTrainer(resolveTrainer(dto.getTrainerId()));
 
         return ActivityMapper.toDTO(activityRepository.save(existingActivity));
+    }
+
+    private Trainer resolveTrainer(Long trainerId) {
+        if (trainerId == null) {
+            return null;
+        }
+
+        return trainerRepository.findById(trainerId)
+                .orElseThrow(() -> new ObjectNotFoundException("entrenadora", trainerId));
     }
 }

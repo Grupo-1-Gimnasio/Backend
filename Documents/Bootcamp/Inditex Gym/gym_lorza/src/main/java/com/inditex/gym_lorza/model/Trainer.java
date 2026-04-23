@@ -23,9 +23,18 @@ public class Trainer {
     private String name;
     @NotBlank
     private  String dni;
+
+    @Column(name = "speciality")
+    private String speciality;
+
+    @Column(name = "experience")
+    private String experience;
+
     @NotNull
+    @Column(name = "hiring_year")
     private  Integer hiringYear;
     @NotNull
+    @Column(name = "is_hired")
     private  Boolean isHired;
 
     private String image;

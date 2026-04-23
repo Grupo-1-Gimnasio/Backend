@@ -19,5 +19,7 @@ public class UserRequestDTO {
     private Integer startYear;
     @NotNull
     private Boolean isActive;
+    @NotNull
+    private Boolean annualFeePaid;
     private String image;
 }
